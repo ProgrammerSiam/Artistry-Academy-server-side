@@ -226,7 +226,6 @@ async function run() {
     });
     app.get("/enrolledcourse/:email", async (req, res) => {
       const email = req.params.email;
-      // console.log(email)
       const query = { email: email, payment_status: "paid" };
       const result = await SelectedCoursecollection.find(query).toArray();
       res.send(result);
@@ -234,7 +233,6 @@ async function run() {
 
     app.post("/SelectCourse", async (req, res) => {
       const course = req.body;
-      // console.log('course', course)
       query = { classID: course.classID };
       const existingCourse = await SelectedCoursecollection.findOne(query);
       if (existingCourse) {
@@ -253,7 +251,6 @@ async function run() {
     });
     app.get("/courseFeePayment/:id", async (req, res) => {
       const id = req.params.id;
-      // console.log(email)
       const query = { _id: new ObjectId(id) };
       const result = await SelectedCoursecollection.findOne(query);
       res.send(result);
@@ -289,13 +286,13 @@ async function run() {
     });
     app.get("/paymenthistory/:email", async (req, res) => {
       const email = req.params.email;
-      // console.log(email)
+
       const query = { email: email };
       const result = await paymentCollection
         .find(query)
         .sort({ price: -1 })
         .toArray();
-      // console.log(result)
+
       res.send(result);
     });
     // create payment intent

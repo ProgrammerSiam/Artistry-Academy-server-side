@@ -68,7 +68,7 @@ async function run() {
 
     const verifyAdmin = async (req, res, next) => {
       const email = req.decoded.email;
-      // console.log('decoded email from verify admin', email)
+
       const query = { email: email };
       const user = await userscollection.findOne(query);
       if (user?.role !== "admin") {

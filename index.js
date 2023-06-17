@@ -207,7 +207,7 @@ async function run() {
 
     app.get("/popularinstructors", async (req, res) => {
       const result = await ClasssCollection.find()
-        .sort({ enrolled_Student: -1 })
+        .sort({ enrolled_Student: +1 })
         .toArray();
       res.send(result);
     });

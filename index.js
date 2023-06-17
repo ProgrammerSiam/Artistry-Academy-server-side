@@ -13,7 +13,7 @@ app.use(express.json());
 
 const verifyJWT = (req, res, next) => {
   const authorization = req.headers.authorization;
-  // console.log('authorization', authorization)
+
   if (!authorization) {
     return res
       .status(401)
@@ -21,7 +21,7 @@ const verifyJWT = (req, res, next) => {
   }
   // bearer token
   const token = authorization.split(" ")[1];
-  // console.log('token', token)
+
   jwt.verify(token, process.env.JWT_ACCESS_TOCKEN, (err, decoded) => {
     if (err) {
       return res
@@ -32,8 +32,6 @@ const verifyJWT = (req, res, next) => {
     next();
   });
 };
-
-// const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@summer-school.9wyvcpv.mongodb.net/?retryWrites=true&w=majority`;
 
 const uri = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.tlwiikw.mongodb.net/?retryWrites=true&w=majority`;
 
